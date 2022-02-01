@@ -1,5 +1,5 @@
 import requests
-
+#add commentary
 from tqdm import tqdm
 
 class Product:
