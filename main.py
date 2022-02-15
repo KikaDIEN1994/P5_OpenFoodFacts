@@ -6,3 +6,4 @@ if __name__ == '__main__':
     downloader.download()
     products = downloader.get_product_cleaned()
     database = Database(products)
+    database.fill_database()
