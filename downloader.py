@@ -17,6 +17,7 @@ class Downloader:
 
     def download(self):#reunion
         self.products_downloaded = []
+        print("Downloding ...")
         for i in tqdm(range(1, self.number_of_page+1)):
             response = requests.get("https://fr.openfoodfacts.org/cgi/search.pl",
             params={'page_size': self.number_of_product,

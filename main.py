@@ -1,4 +1,4 @@
-from api import Downloader
+from downloader import Downloader
 from database import Database
 
 if __name__ == '__main__':
