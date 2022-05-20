@@ -1,34 +1,29 @@
-import mysql.connector 
-from peewee import *
-
-conn = mysql.connector.connect(host='127.0.0.1', user='kika2', password='Password123@')
-cursor = conn.cursor()
-cursor.execute('DROP DATABASE IF EXISTS base')
-cursor.execute('CREATE DATABASE base')
-conn.close()
+from peewee import Model, CharField, ForeignKeyField, MySQLDatabase
 
 
-
+# Creation database
 db = MySQLDatabase('base', host='localhost', port=3306, user='kika2', password='Password123@')
 db.connect()
 
-class Product(Model):
-   name = CharField()
-   nutriscore = CharField()
-   stores = CharField()
-   url = CharField()
 
-   class Meta:
-        database=db
-        db_table='Product'
+# Creation model product
+class Product(Model):
+    name = CharField()
+    nutriscore = CharField()
+    stores = CharField()
+    url = CharField()
+
+    class Meta:
+        database = db
+        db_table = 'Product'
 
 
 class Category(Model):
     name_category = CharField()
 
     class Meta:
-        database=db
-        db_table='Category'
+        database = db
+        db_table = 'Category'
 
 
 class Categorized(Model):
@@ -36,20 +31,20 @@ class Categorized(Model):
     category_fk = ForeignKeyField(Category)
 
     class Meta:
-        database=db
+        database = db
         db_table = 'Categorized'
 
 
 class Favoris(Model):
-    product_fk = CharField()
-    product_subtitut_fk = CharField()
+    product_fk = ForeignKeyField(Product, related_name="original")
+    product_substitut_fk = ForeignKeyField(Product, related_name="substitut")
 
     class Meta:
-        database=db
+        database = db
         db_table = 'Favoris'
 
-
-db.create_tables([Product])
-db.create_tables([Category])
-db.create_tables([Categorized])
-db.create_tables([Favoris])
+def create_tables():
+    db.create_tables([Product])
+    db.create_tables([Category])
+    db.create_tables([Categorized])
+    db.create_tables([Favoris])
