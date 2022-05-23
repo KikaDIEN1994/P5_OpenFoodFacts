@@ -43,4 +43,4 @@ PyMySQL==1.0.2
 
 ### 3.Lancement du code
 
-python main.py
+python3 main.py
