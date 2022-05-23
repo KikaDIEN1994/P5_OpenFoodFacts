@@ -16,6 +16,6 @@ mysql-connector==2.2.9
 peewee==3.14.8
 PyMySQL==1.0.2
 
-### 3.Lancement du jeu
+### 3.Lancement du code
 
 python main.py
